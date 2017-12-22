@@ -8,6 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import org.academiadecodigo.bootcamp.model.User;
 import org.academiadecodigo.bootcamp.model.UserService;
 
 public class LoginController {
@@ -46,17 +47,58 @@ public class LoginController {
     @FXML
     private Hyperlink registerLink;
 
-    @FXML
-    private Hyperlink cancelLink;
+
 
 
 
     @FXML
     void onLogin(ActionEvent event) {
+        if (usernameTxtField.getText().isEmpty() && passwordField.getText().isEmpty()) {
+            errorLabel.setText("Please set your user name and password ");
+            return;
+        }
+        if (!isOnLogin && emailTxtField.getText().isEmpty()) {
+            errorLabel.setText("Please set your Email ");
+            return;
+        }
+
+        if (!isOnLogin) {
+            userService.addUser(new User(usernameTxtField.getText(), passwordField.getText(), emailTxtField.getText()));
+            loginButton.setText("Login");
+            registerLink.setText("Register");
+            emailLabel.setVisible(false);
+            emailTxtField.setVisible(false);
+            setOnLogin();
+
+            return;
+        }
+        System.out.println(usernameTxtField.getText());
+
+        if (userService.authenticate(usernameTxtField.getText(), passwordField.getText())) {
+            errorLabel.setText("Log in successfull");
+        } else{
+            errorLabel.setText("fail to login");
+    }
+
     }
 
     @FXML
     void onRegister(ActionEvent event) {
+        if (isOnLogin){
+            loginButton.setText("Register");
+            registerLink.setText("Cancel");
+            emailLabel.setVisible(true);
+            emailTxtField.setVisible(true);
+            setOnLogin();
+            return;
+        }
+        loginButton.setText("Login");
+        registerLink.setText("Register");
+        emailLabel.setVisible(false);
+        emailTxtField.setVisible(false);
+        setOnLogin();
+
+
     }
 
     private UserService userService;
@@ -67,6 +109,9 @@ public class LoginController {
         this.userService = userService;
     }
 
-    
+    private void setOnLogin() {
+        isOnLogin = !isOnLogin;
+    }
+
 }
 

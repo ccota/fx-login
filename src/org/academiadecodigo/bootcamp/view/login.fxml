@@ -36,9 +36,7 @@
       <TextField fx:id="emailTxtField" layoutX="215.0" layoutY="255.0" promptText="youremail@example.com" visible="false" />
       <Button fx:id="loginButton" defaultButton="true" layoutX="206.0" layoutY="337.0" mnemonicParsing="false" onAction="#onLogin" prefHeight="27.0" prefWidth="69.0" text="Login" />
       <PasswordField fx:id="passwordField" layoutX="215.0" layoutY="215.0" promptText="password" />
-      <Button fx:id="Register" defaultButton="true" layoutX="206.0" layoutY="337.0" mnemonicParsing="false" onAction="#onRegister" prefHeight="27.0" prefWidth="69.0" text="Register" textAlignment="CENTER" visible="false" />
       <Label fx:id="errorLabel" layoutX="100.0" layoutY="401.0" prefHeight="40.0" prefWidth="282.0" textFill="#c42121" />
-      <Hyperlink id="registerLink" fx:id="registerLink" layoutX="211.0" layoutY="364.0" text="Register" underline="true" />
-      <Hyperlink id="registerLink" fx:id="cancelLink" layoutX="215.0" layoutY="364.0" text="Cancel" underline="true" visible="false" />
+      <Hyperlink id="registerLink" fx:id="registerLink" accessibleRole="BUTTON" layoutX="211.0" layoutY="364.0" onAction="#onRegister" text="Register" underline="true" />
    </children>
 </Pane>
