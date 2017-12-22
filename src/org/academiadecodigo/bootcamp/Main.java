@@ -5,6 +5,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.academiadecodigo.bootcamp.controller.LoginController;
+import org.academiadecodigo.bootcamp.model.MockUserService;
+import org.academiadecodigo.bootcamp.model.UserService;
 
 public class Main extends Application {
 
@@ -16,14 +19,14 @@ public class Main extends Application {
 
 
         //Instantiate the view and controller
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("org/academiadecosdigo/bootcamp/view/login.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("view/login.fxml"));
         root = fxmlLoader.load();
 
         UserService userService = new MockUserService();
 
         //Wire the controller to the service
-        LoginController loginController =  fxmlLoader.getController();
-        loginController.setUserService(userService);
+            LoginController loginController =  fxmlLoader.getController();
+            loginController.setUserService(userService);
 
 
 
