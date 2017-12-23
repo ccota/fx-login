@@ -4,11 +4,11 @@ import java.sql.Timestamp;
 
 public class User {
 
-    String passWord;
-    String email;
-    String username;
+   private String passWord;
+    private String email;
+   private String username;
 
-    public User(String passWord, String email, String username) {
+    public User(String username, String passWord, String email) {
         this.passWord = passWord;
         this.email = email;
         this.username = username;
@@ -19,16 +19,13 @@ public class User {
     }
 
     public boolean checkPass(String password) {
+
         return this.passWord.equals(password);
     }
 
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "passWord='" + passWord + '\'' +
-                ", email='" + email + '\'' +
-                ", username='" + username + '\'' +
-                '}';
+    public String getPassWord() {
+        return passWord;
     }
+
+
 }

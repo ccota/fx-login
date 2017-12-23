@@ -8,37 +8,40 @@ public class MockUserService implements UserService {
 
     @Override
     public Boolean authenticate(String name, String password) {
-        if (userList.size() ==0){
+        if (userList.isEmpty()){
             return false;
         }
-        if (findByName(name) == null){
+        User user = findByName(name);
+
+        if (user == null){
             return false;
         }
-        System.out.println("name " + name);
 
-        System.out.println(findByName(name).getUsername() + findByName(name).checkPass(password));
-
-        return findByName(name).getUsername().equals(name) && findByName(name).checkPass(password);
+        return user.getUsername().equals(name) && user.getPassWord().equals(password);
     }
 
     @Override
     public void addUser(User user) {
+        if (user == null){
+            return;
+        }
         userList.add(user);
     }
 
     @Override
     public User findByName(String name) {
-        if (userList.size() == 0){
+        if (userList.isEmpty()){
             return null;
         }
-        User user = null;
-        for (User u : userList){
-            if (u.getUsername().equals(name)){
-                return u;
+
+        for (User user : userList){
+            if (user.getUsername().equals(name)){
+                return user;
             }
         }
 
-        return user;
+
+        return null;
     }
 
     @Override
@@ -46,4 +49,6 @@ public class MockUserService implements UserService {
 
         return userList.size();
     }
+
+
 }

@@ -11,6 +11,9 @@ import javafx.scene.image.ImageView;
 import org.academiadecodigo.bootcamp.model.User;
 import org.academiadecodigo.bootcamp.model.UserService;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class LoginController {
     private boolean isOnLogin = true;
 
@@ -48,12 +51,15 @@ public class LoginController {
     private Hyperlink registerLink;
 
 
-
+    private static final String EMAIL_PATTERN =
+            "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+                    + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 
 
     @FXML
     void onLogin(ActionEvent event) {
-        if (usernameTxtField.getText().isEmpty() && passwordField.getText().isEmpty()) {
+
+        if (usernameTxtField.getText().isEmpty() || passwordField.getText().isEmpty()) {
             errorLabel.setText("Please set your user name and password ");
             return;
         }
@@ -62,40 +68,54 @@ public class LoginController {
             return;
         }
 
-        if (!isOnLogin) {
-            userService.addUser(new User(usernameTxtField.getText(), passwordField.getText(), emailTxtField.getText()));
-            loginButton.setText("Login");
-            registerLink.setText("Register");
-            emailLabel.setVisible(false);
-            emailTxtField.setVisible(false);
-            setOnLogin();
-
+        Pattern pattern = Pattern.compile(EMAIL_PATTERN);
+        Matcher matcher = pattern.matcher(emailTxtField.getText());
+        if (!isOnLogin && !matcher.matches()) {
+            emailTxtField.clear();
+            errorLabel.setText("Invalid email format");
             return;
         }
-        System.out.println(usernameTxtField.getText());
 
-        if (userService.authenticate(usernameTxtField.getText(), passwordField.getText())) {
-            errorLabel.setText("Log in successfull");
-        } else{
-            errorLabel.setText("fail to login");
+        if ((isOnLogin)) {
+            login();
+        } else {
+            register();
+        }
+
+
     }
+
+    private void login(){
+
+        errorLabel.setText((userService.authenticate(usernameTxtField.getText(), passwordField.getText()) ) ?
+                "Login successful"  : "username or password does not exist");
+
+
+
+
+
+    }
+    private void register(){
+
+        if (userService.findByName(usernameTxtField.getText()) != null){
+            usernameTxtField.clear();
+            errorLabel.setText("Username already taken");
+            return;
+        }
+
+        userService.addUser(new User(usernameTxtField.getText(), passwordField.getText(), emailTxtField.getText()));
+        errorLabel.setText("Register successful");
+
+        setOnLogin();
 
     }
 
     @FXML
     void onRegister(ActionEvent event) {
         if (isOnLogin){
-            loginButton.setText("Register");
-            registerLink.setText("Cancel");
-            emailLabel.setVisible(true);
-            emailTxtField.setVisible(true);
-            setOnLogin();
+            setOnRegister();
             return;
         }
-        loginButton.setText("Login");
-        registerLink.setText("Register");
-        emailLabel.setVisible(false);
-        emailTxtField.setVisible(false);
         setOnLogin();
 
 
@@ -103,14 +123,37 @@ public class LoginController {
 
     private UserService userService;
 
-
-
     public void setUserService(UserService userService) {
         this.userService = userService;
     }
 
+
+    private void setOnRegister(){
+        isOnLogin = false;
+        loginButton.setText("Register");
+        registerLink.setText("Cancel");
+
+        usernameTxtField.clear();
+        passwordField.clear();
+        emailTxtField.clear();
+        errorLabel.setText("");
+
+        emailLabel.setVisible(true);
+        emailTxtField.setVisible(true);
+
+    }
+
     private void setOnLogin() {
-        isOnLogin = !isOnLogin;
+        isOnLogin = true;
+        loginButton.setText("Login");
+        registerLink.setText("Register");
+
+        usernameTxtField.clear();
+        passwordField.clear();
+        emailTxtField.clear();
+
+        emailLabel.setVisible(false);
+        emailTxtField.setVisible(false);
     }
 
 }
