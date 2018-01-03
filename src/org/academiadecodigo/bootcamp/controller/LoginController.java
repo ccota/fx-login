@@ -11,6 +11,7 @@ import javafx.scene.image.ImageView;
 import org.academiadecodigo.bootcamp.Navigation;
 import org.academiadecodigo.bootcamp.model.User;
 import org.academiadecodigo.bootcamp.model.UserService;
+import org.academiadecodigo.bootcamp.utils.Security;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -80,7 +81,7 @@ public class LoginController implements Controller {
 
     }
 
-    private boolean checkTextFiieldContets() {
+    private boolean checkTextFieldContents() {
         if (usernameTxtField.getText().isEmpty() || passwordField.getText().isEmpty()) {
             errorLabel.setText("Please set your user name and password ");
             return true;
@@ -104,19 +105,21 @@ public class LoginController implements Controller {
 
     private void login(){
 
-        if (checkTextFiieldContets()) return;
+        if (checkTextFieldContents()) return;
 
-        errorLabel.setText((userService.authenticate(usernameTxtField.getText(), passwordField.getText()) ) ?
-                "Login successful"  : "username or password does not exist");
+        if (!userService.authenticate(usernameTxtField.getText(),Security.getHash(passwordField.getText()) )){
+          errorLabel.setText(  "username or password does not exist");
+            return;
+        }
 
+        errorLabel.setText("Login successful");
         Navigation.getInstance().loadScreen("mainWindow");
-
     }
 
 
     private void register(){
 
-        if (checkTextFiieldContets()) return;
+        if (checkTextFieldContents()) return;
 
         if (userService.findByName(usernameTxtField.getText()) != null){
             usernameTxtField.clear();
@@ -124,7 +127,7 @@ public class LoginController implements Controller {
             return;
         }
 
-        userService.addUser(new User(usernameTxtField.getText(), passwordField.getText(), emailTxtField.getText()));
+        userService.addUser(new User(usernameTxtField.getText(), Security.getHash(passwordField.getText()), emailTxtField.getText()));
         errorLabel.setText("Register successful");
 
         setOnLogin();

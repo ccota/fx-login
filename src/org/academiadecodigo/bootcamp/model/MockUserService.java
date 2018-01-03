@@ -1,11 +1,13 @@
 package org.academiadecodigo.bootcamp.model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class MockUserService implements UserService {
     // it's said that a hashMap works better...  O MAPA É FIXE
-    private List<User> userList = new ArrayList<User>();
+    private Map<String, User> userList = new HashMap<String, User>();
 
     @Override
     public Boolean authenticate(String name, String password) {
@@ -26,20 +28,12 @@ public class MockUserService implements UserService {
         if (user == null){
             return;
         }
-        userList.add(user);
+        userList.put(user.getUsername(), user);
     }
 
     @Override
     public User findByName(String name) {
-        if (userList.isEmpty()){
-            return null;
-        }
-        for (User user : userList){
-            if (user.getUsername().equals(name)){
-                return user;
-            }
-        }
-        return null;
+        return userList.get(name);
     }
 
     @Override
