@@ -8,13 +8,14 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import org.academiadecodigo.bootcamp.Navigation;
 import org.academiadecodigo.bootcamp.model.User;
 import org.academiadecodigo.bootcamp.model.UserService;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class LoginController {
+public class LoginController implements Controller {
     private boolean isOnLogin = true;
 
     @FXML
@@ -59,13 +60,34 @@ public class LoginController {
     @FXML
     void onLogin(ActionEvent event) {
 
+
+        if ((isOnLogin)) {
+            login();
+        } else {
+            register();
+        }
+    }
+
+
+    @FXML
+    void onRegister(ActionEvent event) {
+        if (isOnLogin){
+            setOnRegister();
+            return;
+        }
+        setOnLogin();
+
+
+    }
+
+    private boolean checkTextFiieldContets() {
         if (usernameTxtField.getText().isEmpty() || passwordField.getText().isEmpty()) {
             errorLabel.setText("Please set your user name and password ");
-            return;
+            return true;
         }
         if (!isOnLogin && emailTxtField.getText().isEmpty()) {
             errorLabel.setText("Please set your Email ");
-            return;
+            return true;
         }
 
         Pattern pattern = Pattern.compile(EMAIL_PATTERN);
@@ -73,29 +95,28 @@ public class LoginController {
         if (!isOnLogin && !matcher.matches()) {
             emailTxtField.clear();
             errorLabel.setText("Invalid email format");
-            return;
+            return true;
         }
-
-        if ((isOnLogin)) {
-            login();
-        } else {
-            register();
-        }
-
-
+        return false;
     }
 
+
+
     private void login(){
+
+        if (checkTextFiieldContets()) return;
 
         errorLabel.setText((userService.authenticate(usernameTxtField.getText(), passwordField.getText()) ) ?
                 "Login successful"  : "username or password does not exist");
 
-
-
-
+        Navigation.getInstance().loadScreen("mainWindow");
 
     }
+
+
     private void register(){
+
+        if (checkTextFiieldContets()) return;
 
         if (userService.findByName(usernameTxtField.getText()) != null){
             usernameTxtField.clear();
@@ -110,22 +131,9 @@ public class LoginController {
 
     }
 
-    @FXML
-    void onRegister(ActionEvent event) {
-        if (isOnLogin){
-            setOnRegister();
-            return;
-        }
-        setOnLogin();
-
-
-    }
-
     private UserService userService;
 
-    public void setUserService(UserService userService) {
-        this.userService = userService;
-    }
+
 
 
     private void setOnRegister(){
@@ -156,5 +164,8 @@ public class LoginController {
         emailTxtField.setVisible(false);
     }
 
+    public void setUserService(UserService userService) {
+            this.userService = userService;
+    }
 }
 

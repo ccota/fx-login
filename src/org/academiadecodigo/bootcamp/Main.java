@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.academiadecodigo.bootcamp.controller.Controller;
 import org.academiadecodigo.bootcamp.controller.LoginController;
 import org.academiadecodigo.bootcamp.model.MockUserService;
 import org.academiadecodigo.bootcamp.model.UserService;
@@ -18,15 +19,9 @@ public class Main extends Application {
     public void init() throws Exception {
 
 
-        //Instantiate the view and controller
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("view/login.fxml"));
-        root = fxmlLoader.load();
 
-        UserService userService = new MockUserService();
 
         //Wire the controller to the service
-            LoginController loginController =  fxmlLoader.getController();
-            loginController.setUserService(userService);
 
 
 
@@ -34,20 +29,23 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        if (root == null){
-            throw new  IllegalStateException("Root view not properly loaded");
-        }
-
-            primaryStage.setTitle("<Academia de Código_>");
-            primaryStage.setScene(new Scene(root));
-            primaryStage.show();
 
 
+        // set the primary stage
+        Navigation.getInstance().setStage(primaryStage);
 
+        Navigation.getInstance().loadScreen("login");
 
-
-
+        UserService userService = new MockUserService();
+        ((LoginController) Navigation.getInstance().getController("login")).setUserService(userService);
     }
+
+
+
+
+
+
+
 
 
     public static void main(String[] args) {

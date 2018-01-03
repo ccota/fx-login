@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MockUserService implements UserService {
+    // it's said that a hashMap works better...  O MAPA É FIXE
     private List<User> userList = new ArrayList<User>();
 
     @Override
@@ -33,14 +34,11 @@ public class MockUserService implements UserService {
         if (userList.isEmpty()){
             return null;
         }
-
         for (User user : userList){
             if (user.getUsername().equals(name)){
                 return user;
             }
         }
-
-
         return null;
     }
 
