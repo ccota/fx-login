@@ -13,6 +13,25 @@ public class User {
         this.username = username;
     }
 
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        User user = (User) o;
+
+        if (!email.equals(user.email)) return false;
+        return username.equals(user.username);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = email.hashCode();
+        result = 31 * result + username.hashCode();
+        return result;
+    }
+
     public String getUsername() {
         return username;
     }
@@ -26,5 +45,7 @@ public class User {
         return passWord;
     }
 
-
+    public String getEmail() {
+        return email;
+    }
 }

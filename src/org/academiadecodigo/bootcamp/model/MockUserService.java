@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 
 public class MockUserService implements UserService {
-    // it's said that a hashMap works better...  O MAPA É FIXE
     private Map<String, User> userList = new HashMap<String, User>();
 
     @Override
