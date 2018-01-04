@@ -1,4 +1,7 @@
-package org.academiadecodigo.bootcamp.model;
+package org.academiadecodigo.bootcamp.service;
+
+import org.academiadecodigo.bootcamp.model.BootCamp;
+import org.academiadecodigo.bootcamp.model.CodeCadet;
 
 import java.util.*;
 

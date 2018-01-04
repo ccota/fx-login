@@ -13,6 +13,17 @@ public class User {
         this.username = username;
     }
 
+    public void setPassWord(String passWord) {
+        this.passWord = passWord;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
     @Override
     public boolean equals(Object o) {

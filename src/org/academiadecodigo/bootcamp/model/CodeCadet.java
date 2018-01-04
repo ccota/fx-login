@@ -1,8 +1,8 @@
 package org.academiadecodigo.bootcamp.model;
 
+import org.academiadecodigo.bootcamp.utils.Gender;
+
 import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
 
 public class CodeCadet {
     private User user;
@@ -34,6 +34,30 @@ public class CodeCadet {
     }
     public void setBootCamp(BootCamp bootCamp){
         this.bootCamp = bootCamp;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public void setGender(Gender gender) {
+        this.gender = gender;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public void setBirthDate(Calendar birthDate) {
+        this.birthDate = birthDate;
     }
 
     @Override

@@ -1,6 +1,5 @@
 package org.academiadecodigo.bootcamp.model;
 
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class BootCamp {
@@ -27,6 +26,26 @@ public class BootCamp {
 
     public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public void setStart(Calendar start) {
+        this.start = start;
+    }
+
+    public void setEnd(Calendar end) {
+        this.end = end;
+    }
+
+    public void setCadets(Set<CodeCadet> cadets) {
+        this.cadets = cadets;
     }
 
     public String getLocation() {

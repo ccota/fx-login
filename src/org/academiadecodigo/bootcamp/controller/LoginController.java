@@ -10,13 +10,18 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import org.academiadecodigo.bootcamp.Navigation;
 import org.academiadecodigo.bootcamp.model.User;
-import org.academiadecodigo.bootcamp.model.UserService;
+import org.academiadecodigo.bootcamp.service.MockUserService;
+import org.academiadecodigo.bootcamp.service.ServiceRegistry;
+import org.academiadecodigo.bootcamp.service.UserService;
 import org.academiadecodigo.bootcamp.utils.Security;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class LoginController implements Controller {
+
+
+    private UserService userService;
     private boolean isOnLogin = true;
 
     @FXML
@@ -57,6 +62,9 @@ public class LoginController implements Controller {
             "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
                     + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 
+    public void initialize(){
+        userService =(UserService) ServiceRegistry.getInstance().getService("USERSERVICE");
+    }
 
     @FXML
     void onLogin(ActionEvent event) {
@@ -134,7 +142,6 @@ public class LoginController implements Controller {
 
     }
 
-    private UserService userService;
 
 
 
@@ -167,8 +174,5 @@ public class LoginController implements Controller {
         emailTxtField.setVisible(false);
     }
 
-    public void setUserService(UserService userService) {
-            this.userService = userService;
-    }
 }
 

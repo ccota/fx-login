@@ -1,8 +1,11 @@
-package org.academiadecodigo.bootcamp.model;
+package org.academiadecodigo.bootcamp.service;
+
+import org.academiadecodigo.bootcamp.model.BootCamp;
+import org.academiadecodigo.bootcamp.model.CodeCadet;
 
 import java.util.List;
 
-public interface BootcampService {
+public interface BootcampService extends  Service{
     void addBootCamp(BootCamp bootCamp);
 
     void addCodeCaddet(BootCamp bootCamp, CodeCadet codeCadet);

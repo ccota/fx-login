@@ -60,7 +60,6 @@ public final class Navigation {
     private void setScene(Scene scene) {
 
         // set the scene
-        System.out.println("stage is " + stage);
         stage.setScene(scene);
 
         // show the stage to reload

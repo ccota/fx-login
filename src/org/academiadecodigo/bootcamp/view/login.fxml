@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.URL?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
@@ -11,7 +10,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="462.0" prefWidth="481.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.academiadecodigo.bootcamp.controller.LoginController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="462.0" prefWidth="481.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.academiadecodigo.bootcamp.controller.LoginController">
    <children>
       <ImageView fx:id="logoImage" fitHeight="123.0" fitWidth="214.0" layoutX="139.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -40,8 +39,4 @@
       <Hyperlink id="registerLink" fx:id="registerLink" accessibleRole="BUTTON" layoutX="210.0" layoutY="364.0" onAction="#onRegister" text="Register" underline="true" />
       <Label fx:id="errorLabel" layoutX="100.0" layoutY="401.0" prefHeight="40.0" prefWidth="282.0" textFill="#c42121" />
    </children>
-   <stylesheets>
-      <URL value="@style.css" />
-      <URL value="@style.css" />
-   </stylesheets>
 </Pane>

@@ -1,6 +1,8 @@
-package org.academiadecodigo.bootcamp.model;
+package org.academiadecodigo.bootcamp.service;
 
-public interface UserService {
+import org.academiadecodigo.bootcamp.model.User;
+
+public interface UserService extends Service{
 
     /**
      *
@@ -30,5 +32,7 @@ public interface UserService {
      * @return
      */
     public int  count();
+
+
 
 }

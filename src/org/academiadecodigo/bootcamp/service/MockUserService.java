@@ -1,21 +1,21 @@
-package org.academiadecodigo.bootcamp.model;
+package org.academiadecodigo.bootcamp.service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import org.academiadecodigo.bootcamp.model.User;
+
+import java.util.*;
 
 public class MockUserService implements UserService {
+
     private Map<String, User> userList = new HashMap<String, User>();
 
     @Override
     public Boolean authenticate(String name, String password) {
-        if (userList.isEmpty()){
+        if (userList.isEmpty()) {
             return false;
         }
         User user = findByName(name);
 
-        if (user == null){
+        if (user == null) {
             return false;
         }
 
@@ -24,7 +24,7 @@ public class MockUserService implements UserService {
 
     @Override
     public void addUser(User user) {
-        if (user == null){
+        if (user == null) {
             return;
         }
         userList.put(user.getUsername(), user);

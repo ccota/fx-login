@@ -5,12 +5,14 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bootcampController">
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.academiadecodigo.bootcamp.controller.BootcampController">
   <children>
     <MenuBar VBox.vgrow="NEVER">
       <menus>
@@ -53,12 +55,18 @@
     </MenuBar>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
       <children>
-            <Button fx:id="back" layoutX="290.0" layoutY="164.0" mnemonicParsing="false" onAction="#goBack" text="Back" />
-            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="220.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
+            <Button fx:id="back" layoutX="29.0" layoutY="321.0" mnemonicParsing="false" onAction="#goBack" text="Back" />
+            <ImageView fitHeight="49.0" fitWidth="152.0" layoutX="274.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@academia_codigo_large.png" />
                </image>
             </ImageView>
+            <TableView id="tableView" layoutX="162.0" layoutY="63.0" prefHeight="200.0" prefWidth="337.0">
+              <columns>
+                <TableColumn prefWidth="75.0" text="C1" />
+                <TableColumn prefWidth="75.0" text="C2" />
+              </columns>
+            </TableView>
       </children>
     </AnchorPane>
   </children>

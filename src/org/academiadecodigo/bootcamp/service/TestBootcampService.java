@@ -1,20 +1,16 @@
-package org.academiadecodigo.bootcamp.model;
+package org.academiadecodigo.bootcamp.service;
 
-import org.academiadecodigo.bootcamp.Navigation;
+import org.academiadecodigo.bootcamp.model.BootCamp;
+import org.academiadecodigo.bootcamp.model.CodeCadet;
+import org.academiadecodigo.bootcamp.model.User;
+import org.academiadecodigo.bootcamp.utils.Gender;
 
-import java.io.IOException;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.GregorianCalendar;
-import java.util.Scanner;
 
-public class Test {
+public class TestBootcampService {
 
     public static void main(String[] args) {
-        Test t = new Test();
+        TestBootcampService t = new TestBootcampService();
 
         t.start();
 
@@ -95,9 +91,6 @@ public class Test {
 
         System.out.println("Compare code cadet test 3: ");
         System.out.println("check if code cadet has same e-mail");
-        System.out.println("Code cadet 1: " + codeCadet1.toString());
-        System.out.println("Code cadet 4: " + codeCadet4.toString());
-
         if (codeCadet1.equals(codeCadet4)) {
             System.out.println("Fail");
             return;
