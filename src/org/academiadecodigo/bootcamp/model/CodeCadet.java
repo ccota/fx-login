@@ -12,13 +12,12 @@ public class CodeCadet {
     private Date birthDate;
 
     public CodeCadet(User user, Gender gender, String address,
-                     String city, String phone, BootCamp bootCamp, Date birthDate) {
+                     String city, String phone, Date birthDate) {
         this.user = user;
         this.gender = gender;
         this.address = address;
         this.city = city;
         this.phone = phone;
-        this.bootCamp = bootCamp;
         this.birthDate = birthDate;
     }
 
@@ -30,6 +29,9 @@ public class CodeCadet {
         CodeCadet codeCadet = (CodeCadet) o;
 
         return user.equals(codeCadet.user);
+    }
+    public void setBootCamp(BootCamp bootCamp){
+        this.bootCamp = bootCamp;
     }
 
     @Override
@@ -68,7 +70,7 @@ public class CodeCadet {
     @Override
     public String toString() {
         return "CodeCadet{" +
-                "user=" + user +
+                "user=" + user.toString() +
                 ", gender=" + gender +
                 ", address='" + address + '\'' +
                 ", city='" + city + '\'' +

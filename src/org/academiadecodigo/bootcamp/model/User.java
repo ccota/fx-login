@@ -48,4 +48,12 @@ public class User {
     public String getEmail() {
         return email;
     }
+
+    @Override
+    public String toString() {
+        return  "username='" + username + '\'' +
+                 ", passWord='" + passWord + '\'' +
+                ", email='" + email + '\'' +
+                '}';
+    }
 }

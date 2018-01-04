@@ -1,5 +1,6 @@
 package org.academiadecodigo.bootcamp.model;
 
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class BootCamp {
@@ -20,11 +21,9 @@ public class BootCamp {
         cadets.add(cadet);
     }
 
-    public List<CodeCadet> findAllCodeCadets(){
-        return new LinkedList<>(cadets);
+    public Set<CodeCadet> getCadets() {
+        return cadets;
     }
-
-
 
     public int getId() {
         return id;
@@ -51,5 +50,9 @@ public class BootCamp {
                 ", end=" + end +
                 ", cadets=" + cadets +
                 '}';
+    }
+
+    public void removeCadet(CodeCadet codeCadet) {
+        cadets.remove(codeCadet);
     }
 }
