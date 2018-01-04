@@ -1,11 +1,14 @@
 package org.academiadecodigo.bootcamp.model;
 
+import org.academiadecodigo.bootcamp.Navigation;
+
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.Scanner;
 
 public class Test {
@@ -25,11 +28,8 @@ public class Test {
         BootCamp bootCamp = null;
 
         System.out.println("Create bootcamp test : ");
-        String location = "terceira";
-        Date start = new Date(2018, 1, 1);
-        Date end = new Date(2018, 4, 1);
 
-        bootCamp = new BootCamp(1, location, start, end);
+        bootCamp = new BootCamp(1, "location", new GregorianCalendar(2018, 1, 1),new GregorianCalendar(2018, 4 ,1));
 
         if (bootCamp == null) {
             System.out.println("FAIL");
@@ -71,16 +71,14 @@ public class Test {
         User user4 = new User("user4", "pass", "email");
 
 
-        CodeCadet codeCadet1 = new CodeCadet(user1, Gender.FEMALE, "adress", "city", "1234", new Date(1995, 01, 12));
-        CodeCadet codeCadet2 = new CodeCadet(user2, Gender.FEMALE, "adress", "city", "1234", new Date(1995, 01, 12));
-        CodeCadet codeCadet3 = new CodeCadet(user3, Gender.FEMALE, "adress", "city", "1234", new Date(1995, 01, 12));
-        CodeCadet codeCadet4 = new CodeCadet(user4, Gender.FEMALE, "adress", "city", "1234", new Date(1995, 01, 12));
+        CodeCadet codeCadet1 = new CodeCadet(user1, Gender.FEMALE, "adress", "city", "1234", new GregorianCalendar(1995, 01, 12));
+        CodeCadet codeCadet2 = new CodeCadet(user2, Gender.FEMALE, "adress", "city", "1234", new GregorianCalendar(1995, 01, 12));
+        CodeCadet codeCadet3 = new CodeCadet(user3, Gender.FEMALE, "adress", "city", "1234", new GregorianCalendar(1995, 01, 12));
+        CodeCadet codeCadet4 = new CodeCadet(user4, Gender.FEMALE, "adress", "city", "1234", new GregorianCalendar(1995, 01, 12));
 
 
         System.out.println("Compare codecadet test 1: ");
         System.out.println("Code cadets are different?");
-        System.out.println("Code cadet 1: " + codeCadet1.toString());
-        System.out.println("Code cadet 2: " + codeCadet2.toString());
         if (codeCadet1.equals(codeCadet2)) {
             System.out.println("Fail");
             return;
@@ -89,8 +87,6 @@ public class Test {
 
         System.out.println("Compare code cadet test 2: ");
         System.out.println("check if code cadet has same user name");
-        System.out.println("Code cadet 1: " + codeCadet1.toString());
-        System.out.println("Code cadet 3: " + codeCadet3.toString());
         if (codeCadet1.equals(codeCadet3)) {
             System.out.println("Fail");
             return;
@@ -112,7 +108,7 @@ public class Test {
         System.out.println("Add code cadet to bootcamp test:");
 
         System.out.println("Can not add a null code cadet");
-        bootcampService.addCodeCaddet(bootCamp.getId(), null);
+        bootcampService.addCodeCaddet(bootCamp, null);
         if (bootcampService.findById(bootCamp.getId()).getCadets().size() != 0){
             System.out.println("Fail");
             return;
@@ -127,7 +123,7 @@ public class Test {
         System.out.println("OK \n");
 
         System.out.println("add a new code cadet test");
-        bootcampService.addCodeCaddet(bootCamp.getId(), codeCadet1);
+        bootcampService.addCodeCaddet(bootCamp, codeCadet1);
         if (bootcampService.findById(bootCamp.getId()).getCadets().size() != 1){
             System.out.println("Fail");
             return;
@@ -135,7 +131,7 @@ public class Test {
         System.out.println("OK \n");
 
         System.out.println("add annother cadet to same bootcamp");
-        bootcampService.addCodeCaddet(bootCamp.getId(), codeCadet2);
+        bootcampService.addCodeCaddet(bootCamp, codeCadet2);
         if (bootcampService.findById(bootCamp.getId()).getCadets().size() != 2){
             System.out.println("Fail");
             return;
@@ -160,7 +156,7 @@ public class Test {
 
 
         System.out.println("Can not add the same cadet");
-        bootcampService.addCodeCaddet(bootCamp.getId(), codeCadet1);
+        bootcampService.addCodeCaddet(bootCamp, codeCadet1);
         if (bootcampService.findById(bootCamp.getId()).getCadets().size() != 1){
             System.out.println("Fail");
             return;
@@ -168,9 +164,9 @@ public class Test {
         System.out.println("OK \n");
 
         System.out.println("if the added cadet is in another bootcamp, removes the cadet from that bootcamp and adds in the new one:");
-        BootCamp bootCamp2 = new BootCamp(2,"location", new Date(2018, 2,5), new Date(2018, 5, 4));
+        BootCamp bootCamp2 = new BootCamp(2,"location", new GregorianCalendar(2018, 2,5), new GregorianCalendar(2018, 5, 4));
         bootcampService.addBootCamp(bootCamp2) ;
-        bootcampService.addCodeCaddet(2, codeCadet1);
+        bootcampService.addCodeCaddet(bootCamp2, codeCadet1);
         if (bootcampService.findById(bootCamp2.getId()).getCadets().size() != 1 && bootcampService.findById(bootCamp.getId()).getCadets().size() != 0 ){
             System.out.println("Fail");
             return;
@@ -186,28 +182,15 @@ public class Test {
         System.out.println("OK \n");
 
         System.out.println("list caddets test:");
-        bootcampService.addCodeCaddet(bootCamp2.getId(), codeCadet2);
-        if (bootcampService.findById(2).getCadets().size() != 2){
+        bootcampService.addCodeCaddet(bootCamp2, codeCadet2);
+        if (bootcampService.listAllCodeCadets(bootCamp2).size() != 2){
             System.out.println("Fail");
             return;
         }
         System.out.println("OK \n");
 
 
-
-
-
-        bootcampService.addCodeCaddet(bootCamp.getId(), codeCadet1);
-
-
-
+        System.out.println("NO MORE TESTS");
     }
 
-    private static void listBootCampTest() {
-        throw new UnsupportedOperationException();
-    }
-
-    private static void listCaddetsTest() {
-        throw new UnsupportedOperationException();
-    }
 }

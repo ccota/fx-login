@@ -1,6 +1,8 @@
 package org.academiadecodigo.bootcamp.model;
 
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 public class CodeCadet {
     private User user;
@@ -9,10 +11,10 @@ public class CodeCadet {
     private String city;
     private String phone;
     private BootCamp bootCamp;
-    private Date birthDate;
+    private Calendar birthDate;
 
     public CodeCadet(User user, Gender gender, String address,
-                     String city, String phone, Date birthDate) {
+                     String city, String phone, Calendar birthDate) {
         this.user = user;
         this.gender = gender;
         this.address = address;
@@ -63,7 +65,7 @@ public class CodeCadet {
         return bootCamp;
     }
 
-    public Date getBirthDate() {
+    public Calendar getBirthDate() {
         return birthDate;
     }
 

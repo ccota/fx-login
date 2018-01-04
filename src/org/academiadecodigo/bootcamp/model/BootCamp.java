@@ -6,11 +6,11 @@ import java.util.*;
 public class BootCamp {
     private int id;
     private String location;
-    private Date start;
-    private Date end;
+    private Calendar start;
+    private Calendar end;
     private Set<CodeCadet> cadets = new HashSet<>();
 
-    public BootCamp(int id, String location, Date start, Date end) {
+    public BootCamp(int id, String location, Calendar start, Calendar end) {
         this.id = id;
         this.location = location;
         this.start = start;
@@ -33,11 +33,11 @@ public class BootCamp {
         return location;
     }
 
-    public Date getStart() {
+    public Calendar getStart() {
         return start;
     }
 
-    public Date getEnd() {
+    public Calendar getEnd() {
         return end;
     }
 
