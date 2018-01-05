@@ -64,6 +64,9 @@ public class LoginController implements Controller {
 
     public void initialize(){
         userService =(UserService) ServiceRegistry.getInstance().getService("USERSERVICE");
+
+
+        userService.addUser(new User("a",  Security.getHash("a"), "a@a.oma"));
     }
 
     @FXML
