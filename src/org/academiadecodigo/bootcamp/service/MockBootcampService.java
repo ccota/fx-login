@@ -30,11 +30,10 @@ public class MockBootcampService implements BootcampService {
             return;
         }
         // a code cadet can not be in more than one bootcamp
-        for (BootCamp b:bootCamps.values()) {
-            if ( b.getCadets().contains(codeCadet)){
-                b.removeCadet(codeCadet);
-            }
+        if (codeCadet.getBootCamp() != null){
+            codeCadet.getBootCamp().removeCadet(codeCadet);
         }
+
         codeCadet.setBootCamp(bootCamp);
         bootCamp.addCaddet(codeCadet);
     }
