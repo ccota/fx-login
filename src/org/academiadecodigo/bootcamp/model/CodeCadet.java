@@ -12,6 +12,7 @@ public class CodeCadet {
     private String phone;
     private BootCamp bootCamp;
     private Calendar birthDate;
+    private String birthDateString;
 
     public CodeCadet(User user, Gender gender, String address,
                      String city, String phone, Calendar birthDate) {
@@ -21,6 +22,9 @@ public class CodeCadet {
         this.city = city;
         this.phone = phone;
         this.birthDate = birthDate;
+
+        birthDateString = Integer.toString( birthDate.get(Calendar.DAY_OF_MONTH)) + "/" + Integer.toString(birthDate.get(Calendar.MONTH)) + "/" + Integer.toString(birthDate.get(Calendar.YEAR));
+
     }
 
     @Override
@@ -32,7 +36,8 @@ public class CodeCadet {
 
         return user.equals(codeCadet.user);
     }
-    public void setBootCamp(BootCamp bootCamp){
+
+    public void setBootCamp(BootCamp bootCamp) {
         this.bootCamp = bootCamp;
     }
 
@@ -93,6 +98,10 @@ public class CodeCadet {
         return birthDate;
     }
 
+    public String getBirthDateString() {
+        return birthDateString;
+    }
+
     @Override
     public String toString() {
         return "CodeCadet{" +
@@ -105,5 +114,7 @@ public class CodeCadet {
                 ", birthDate=" + birthDate +
                 '}';
     }
+
+
 }
 

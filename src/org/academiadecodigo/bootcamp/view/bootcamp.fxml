@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.academiadecodigo.bootcamp.controller.BootcampController">
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.academiadecodigo.bootcamp.controller.BootcampController">
   <children>
     <MenuBar VBox.vgrow="NEVER">
       <menus>
@@ -55,14 +55,13 @@
         </Menu>
       </menus>
     </MenuBar>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+    <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefWidth="481.0" VBox.vgrow="ALWAYS">
       <children>
         <Label alignment="CENTER" layoutX="155.0" layoutY="177.0" style="&#10;" text="Drag components from Library here…" textAlignment="CENTER" textFill="#9f9f9f" wrapText="false">
           <font>
             <Font size="18.0" />
           </font>
         </Label>
-            <Button fx:id="back" layoutX="14.0" layoutY="322.0" mnemonicParsing="false" onAction="#goBootcampList" text="Back" />
             <ImageView fitHeight="45.0" fitWidth="101.0" layoutX="302.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@academia_codigo_large.png" />
@@ -70,13 +69,13 @@
             </ImageView>
             <TableView fx:id="tableview" layoutX="14.0" layoutY="205.0" prefHeight="93.0" prefWidth="615.0">
                <columns>
-                  <TableColumn fx:id="NameCol" prefWidth="75.0" text="Name" />
+                  <TableColumn fx:id="nameCol" prefWidth="75.0" text="Name" />
                   <TableColumn fx:id="genderCol" prefWidth="75.0" text="Gender" />
                   <TableColumn fx:id="addressCol" prefWidth="75.0" text="Adress" />
                   <TableColumn fx:id="cityCol" prefWidth="72.0" text="City" />
                   <TableColumn fx:id="phoneCol" prefWidth="75.0" text="Phone" />
-                  <TableColumn fx:id="birthDateCol" prefWidth="75.0" text="BrithDate" />
-                  <TableColumn fx:id="bootcampCol" prefWidth="75.0" text="Bootcamp" />
+                  <TableColumn fx:id="birthDateCol" prefWidth="84.0" text="BrithDate" />
+                  <TableColumn fx:id="bootcampCol" minWidth="0.0" prefWidth="66.0" text="Bootcamp" />
                </columns>
             </TableView>
             <Label fx:id="titleLabel" layoutX="240.0" layoutY="59.0" prefHeight="34.0" prefWidth="198.0" text="Bootcamp Details">
@@ -91,8 +90,9 @@
             <Label fx:id="idLabel" layoutX="340.0" layoutY="94.0" text="Label" />
             <Label fx:id="locationLabel" layoutX="340.0" layoutY="112.0" text="Label" />
             <Label fx:id="startLabel" layoutX="340.0" layoutY="128.0" text="Label" />
-            <Label layoutX="340.0" layoutY="144.0" text="Label" />
+            <Label fx:id="endLabel" layoutX="340.0" layoutY="144.0" text="Label" />
       </children>
     </AnchorPane>
+      <Button fx:id="back" mnemonicParsing="false" onAction="#goToBootcampList" text="Back" />
   </children>
 </VBox>

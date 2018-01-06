@@ -3,19 +3,21 @@ package org.academiadecodigo.bootcamp.controller;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import org.academiadecodigo.bootcamp.Navigation;
 import org.academiadecodigo.bootcamp.model.BootCamp;
 import org.academiadecodigo.bootcamp.model.CodeCadet;
+import org.academiadecodigo.bootcamp.model.User;
 import org.academiadecodigo.bootcamp.service.BootcampService;
 import org.academiadecodigo.bootcamp.service.ServiceRegistry;
 import org.academiadecodigo.bootcamp.utils.Gender;
 
-import java.awt.event.ActionEvent;
 
 public class BootcampController implements Controller {
 
@@ -28,7 +30,7 @@ public class BootcampController implements Controller {
     private TableView<CodeCadet> tableview;
 
     @FXML
-    private TableColumn<CodeCadet, String> NameCol;
+    private TableColumn<CodeCadet, User> nameCol;
 
     @FXML
     private TableColumn<CodeCadet, Gender> genderCol;
@@ -37,14 +39,17 @@ public class BootcampController implements Controller {
     private TableColumn<CodeCadet, String> addressCol;
 
     @FXML
-    private TableColumn<CodeCadet,  String> cityCol;
+    private TableColumn<CodeCadet, String> cityCol;
 
     @FXML
     private TableColumn<CodeCadet, String> phoneCol;
 
+    @FXML
+    private TableColumn<CodeCadet, String> birthDateCol;
+
 
     @FXML
-    private TableColumn<CodeCadet, Integer> bootcampCol;
+    private TableColumn<CodeCadet, BootCamp> bootcampCol;
 
     @FXML
     private Label titleLabel;
@@ -59,31 +64,43 @@ public class BootcampController implements Controller {
     private Label startLabel;
 
     @FXML
-    void goBootcampList(ActionEvent event) {
+    private Label endLabel;
+
+
+    @FXML
+    void goToBootcampList(ActionEvent event) {
 
         Navigation.getInstance().bootcampList();
-
     }
 
 
-    public void initialize(){
+    public void initialize() {
 
-        bootcampService =(BootcampService) ServiceRegistry.getInstance().getService("BOOTCAMPSERVICE");
-/*
+        bootcampService = (BootcampService) ServiceRegistry.getInstance().getService("BOOTCAMPSERVICE");
 
-        ObservableList<CodeCadet> codeCadets = FXCollections.observableList(bootcampService.listAllCodeCadets(bootCamp));
+        ObservableList<CodeCadet> codeCadets = FXCollections.observableList(bootcampService.listAllCodeCadets(bootcampService.getSelectedBootcamp()));
+
         tableview.setItems(codeCadets);
+        tableview.setMinSize(400, 200);
+        fillTableAndLabels(codeCadets);
 
 
+    }
 
+    private void fillTableAndLabels(ObservableList<CodeCadet> codeCadets) {
 
-        idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
-        locationCol.setCellValueFactory(new PropertyValueFactory<>("location"));
-        startCol.setCellValueFactory(new PropertyValueFactory<>("start"));
-        endCol.setCellValueFactory(new PropertyValueFactory<>("end"));
-*/
+        idLabel.setText(Integer.toString(codeCadets.get(0).getBootCamp().getId()));
+        locationLabel.setText(codeCadets.get(0).getBootCamp().getLocation());
+        startLabel.setText(codeCadets.get(0).getBootCamp().getStartString());
+        endLabel.setText(codeCadets.get(0).getBootCamp().getEndString());
 
-
+        nameCol.setCellValueFactory(new PropertyValueFactory<>("user"));
+        genderCol.setCellValueFactory(new PropertyValueFactory<>("gender"));
+        addressCol.setCellValueFactory(new PropertyValueFactory<>("address"));
+        cityCol.setCellValueFactory(new PropertyValueFactory<>("city"));
+        phoneCol.setCellValueFactory(new PropertyValueFactory<>("phone"));
+        birthDateCol.setCellValueFactory(new PropertyValueFactory<>("birthDateString"));
+        bootcampCol.setCellValueFactory(new PropertyValueFactory<>("bootCamp"));
     }
 
 }

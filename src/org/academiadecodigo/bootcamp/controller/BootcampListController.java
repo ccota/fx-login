@@ -42,10 +42,10 @@ public class BootcampListController implements Controller {
     private TableColumn<BootCamp, String> locationCol;
 
     @FXML
-    private TableColumn<BootCamp, Calendar> startCol;
+    private TableColumn<BootCamp, String> startCol;
 
     @FXML
-    private TableColumn<BootCamp, Calendar> endCol;
+    private TableColumn<BootCamp, String> endCol;
 
 
 
@@ -56,9 +56,8 @@ public class BootcampListController implements Controller {
         if (selectedBootcamp == null){
             return;
         }
-        System.out.println(selectedBootcamp.getId());
 
-
+        bootcampService.setSelectedBootcamp(selectedBootcamp);
 
         tableview.getSelectionModel().clearSelection();
 
@@ -85,8 +84,8 @@ public class BootcampListController implements Controller {
 
     }
 
+    //THIS METHOD IS TO DELETE LATER
     private void createbootcamps() {
-        //THIS METHOD IS TO DELETE LATER
 
 
         bootcampService.addBootCamp(new BootCamp(1,"location1", new GregorianCalendar(2018, 2,5), new GregorianCalendar(2018, 5, 8)));
@@ -95,40 +94,44 @@ public class BootcampListController implements Controller {
         bootcampService.addBootCamp(new BootCamp(4,"location4", new GregorianCalendar(2018, 5,5), new GregorianCalendar(2018, 5, 11)));
 
 
+
         bootcampService.addCodeCaddet(bootcampService.findById(1),new CodeCadet(new User("b", Security.getHash("b"),
-                "b@a.com"), Gender.MALE, "address","city", "phone", new GregorianCalendar(1996, 2,1)));
+                "b@a.com"), Gender.MALE, "address","city", "919191919", new GregorianCalendar(1996, 2,1)));
 
         bootcampService.addCodeCaddet(bootcampService.findById(1),new CodeCadet(new User("c", Security.getHash("b"),
-                "c@a.com"), Gender.MALE, "address","city", "phone", new GregorianCalendar(1996, 2,1)));
+                "c@a.com"), Gender.MALE, "address","city", "919191919", new GregorianCalendar(1996, 2,1)));
         bootcampService.addCodeCaddet(bootcampService.findById(2),new CodeCadet(new User("d", Security.getHash("b"),
-                "d@a.com"), Gender.MALE, "address","city", "phone", new GregorianCalendar(1996, 2,1)));
+                "d@a.com"), Gender.MALE, "address","city", "919191919", new GregorianCalendar(1996, 2,1)));
         bootcampService.addCodeCaddet(bootcampService.findById(2),new CodeCadet(new User("e", Security.getHash("b"),
-                "e@a.com"), Gender.MALE, "address","city", "phone", new GregorianCalendar(1996, 2,1)));
+                "e@a.com"), Gender.MALE, "address","city", "919191919", new GregorianCalendar(1996, 2,1)));
         bootcampService.addCodeCaddet(bootcampService.findById(3),new CodeCadet(new User("f", Security.getHash("b"),
-                "f@a.com"), Gender.MALE, "address","city", "phone", new GregorianCalendar(1996, 2,1)));
+                "f@a.com"), Gender.MALE, "address","city", "919191919", new GregorianCalendar(1996, 2,1)));
         bootcampService.addCodeCaddet(bootcampService.findById(3),new CodeCadet(new User("g", Security.getHash("b"),
-                "g@a.com"), Gender.MALE, "address","city", "phone", new GregorianCalendar(1996, 2,1)));
+                "g@a.com"), Gender.MALE, "address","city", "919191919", new GregorianCalendar(1996, 2,1)));
         bootcampService.addCodeCaddet(bootcampService.findById(4),new CodeCadet(new User("h", Security.getHash("b"),
-                "h@a.com"), Gender.MALE, "address","city", "phone", new GregorianCalendar(1996, 2,1)));
+                "h@a.com"), Gender.MALE, "address","city", "919191919", new GregorianCalendar(1996, 2,1)));
         bootcampService.addCodeCaddet(bootcampService.findById(4),new CodeCadet(new User("i", Security.getHash("b"),
-                "i@a.com"), Gender.MALE, "address","city", "phone", new GregorianCalendar(1996, 2,1)));
+                "i@a.com"), Gender.MALE, "address","city", "919191919", new GregorianCalendar(1996, 2,1)));
         bootcampService.addCodeCaddet(bootcampService.findById(1),new CodeCadet(new User("j", Security.getHash("b"),
-                "j@a.com"), Gender.MALE, "address","city", "phone", new GregorianCalendar(1996, 2,1)));
+                "j@a.com"), Gender.MALE, "address","city", "919191919", new GregorianCalendar(1996, 2,1)));
         bootcampService.addCodeCaddet(bootcampService.findById(2),new CodeCadet(new User("k", Security.getHash("b"),
-                "k@a.com"), Gender.MALE, "address","city", "phone", new GregorianCalendar(1996, 2,1)));
+                "k@a.com"), Gender.MALE, "address","city", "919191919", new GregorianCalendar(1996, 2,1)));
         bootcampService.addCodeCaddet(bootcampService.findById(3),new CodeCadet(new User("l", Security.getHash("b"),
-                "l@a.com"), Gender.MALE, "address","city", "phone", new GregorianCalendar(1996, 2,1)));
+                "l@a.com"), Gender.MALE, "address","city", "919191919", new GregorianCalendar(1996, 2,1)));
     }
 
 
     private void fillBootcampTableCells() {
+
+
+
         ObservableList<BootCamp> bootCamps = FXCollections.observableList(bootcampService.listAllBootcamps());
         tableview.setItems(bootCamps);
 
         idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
         locationCol.setCellValueFactory(new PropertyValueFactory<>("location"));
-        startCol.setCellValueFactory(new PropertyValueFactory<>("start"));
-        endCol.setCellValueFactory(new PropertyValueFactory<>("end"));
+        startCol.setCellValueFactory(new PropertyValueFactory<>("startString"));
+        endCol.setCellValueFactory(new PropertyValueFactory<>("endString"));
     }
 
 

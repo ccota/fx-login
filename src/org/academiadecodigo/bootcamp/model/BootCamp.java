@@ -3,6 +3,8 @@ package org.academiadecodigo.bootcamp.model;
 import java.util.*;
 
 public class BootCamp {
+    private final String startString;
+    private final String endString;
     private int id;
     private String location;
     private Calendar start;
@@ -14,9 +16,11 @@ public class BootCamp {
         this.location = location;
         this.start = start;
         this.end = end;
+        startString = Integer.toString(start.get(Calendar.DAY_OF_MONTH)) + "/" + Integer.toString(start.get(Calendar.MONTH)) + "/" + Integer.toString(start.get(Calendar.YEAR));
+        endString = Integer.toString(end.get(Calendar.DAY_OF_MONTH)) + "/" + Integer.toString(end.get(Calendar.MONTH)) + "/" + Integer.toString(end.get(Calendar.YEAR));
     }
 
-    public void addCaddet(CodeCadet cadet){
+    public void addCaddet(CodeCadet cadet) {
         cadets.add(cadet);
     }
 
@@ -60,15 +64,18 @@ public class BootCamp {
         return end;
     }
 
+
     @Override
     public String toString() {
-        return "BootCamp{" +
-                "id=" + id +
-                ", location='" + location + '\'' +
-                ", start=" + start +
-                ", end=" + end +
-                ", cadets=" + cadets +
-                '}';
+        return Integer.toString(id);
+    }
+
+    public String getStartString() {
+        return startString;
+    }
+
+    public String getEndString() {
+        return endString;
     }
 
     public void removeCadet(CodeCadet codeCadet) {

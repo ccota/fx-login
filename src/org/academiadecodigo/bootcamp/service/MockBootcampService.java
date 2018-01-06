@@ -8,6 +8,7 @@ import java.util.*;
 public class MockBootcampService implements BootcampService {
 
     private Map<Integer, BootCamp> bootCamps = new HashMap<>();
+    private BootCamp selectedBootcamp;
 
     @Override
     public void addBootCamp(BootCamp bootCamp){
@@ -55,5 +56,12 @@ public class MockBootcampService implements BootcampService {
         return new LinkedList<>(bootCamps.values());
     }
 
+    @Override
+    public void setSelectedBootcamp(BootCamp bootCamp) {
+        selectedBootcamp = bootCamp;
+    }
 
+    public BootCamp getSelectedBootcamp() {
+        return selectedBootcamp;
+    }
 }

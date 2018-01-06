@@ -15,4 +15,8 @@ public interface BootcampService extends  Service{
     List<CodeCadet> listAllCodeCadets(BootCamp bootCamp);
 
     List<BootCamp> listAllBootcamps();
+
+    void setSelectedBootcamp(BootCamp bootCamp);
+
+    BootCamp getSelectedBootcamp();
 }
