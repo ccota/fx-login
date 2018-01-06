@@ -124,7 +124,7 @@ public class LoginController implements Controller {
         }
 
         errorLabel.setText("Login successful");
-        Navigation.getInstance().loadScreen("mainWindow");
+        Navigation.getInstance().loadScreen("bootcampList");
     }
 
 

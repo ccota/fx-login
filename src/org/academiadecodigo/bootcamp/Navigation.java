@@ -56,6 +56,19 @@ public final class Navigation {
         // load the scene at the top of the stack
         setScene(scenes.peek());
     }
+    public void bootcampList() {
+
+        if (scenes.isEmpty()) {
+            return;
+        }
+
+        // remove the current scene from the stack
+        scenes.pop();
+
+        // load the scene at the top of the stack
+        setScene(scenes.peek());
+    }
+
 
     private void setScene(Scene scene) {
 
