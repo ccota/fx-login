@@ -1,4 +1,4 @@
-package org.academiadecodigo.bootcamp.service;
+package org.academiadecodigo.bootcamp.service.bootcamp;
 
 import org.academiadecodigo.bootcamp.model.BootCamp;
 import org.academiadecodigo.bootcamp.model.CodeCadet;

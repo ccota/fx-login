@@ -14,7 +14,7 @@ import org.academiadecodigo.bootcamp.Navigation;
 import org.academiadecodigo.bootcamp.model.BootCamp;
 import org.academiadecodigo.bootcamp.model.CodeCadet;
 import org.academiadecodigo.bootcamp.model.User;
-import org.academiadecodigo.bootcamp.service.BootcampService;
+import org.academiadecodigo.bootcamp.service.bootcamp.BootcampService;
 import org.academiadecodigo.bootcamp.service.ServiceRegistry;
 import org.academiadecodigo.bootcamp.utils.Gender;
 

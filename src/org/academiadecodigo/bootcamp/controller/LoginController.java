@@ -10,9 +10,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import org.academiadecodigo.bootcamp.Navigation;
 import org.academiadecodigo.bootcamp.model.User;
-import org.academiadecodigo.bootcamp.service.MockUserService;
 import org.academiadecodigo.bootcamp.service.ServiceRegistry;
-import org.academiadecodigo.bootcamp.service.UserService;
+import org.academiadecodigo.bootcamp.service.user.UserService;
 import org.academiadecodigo.bootcamp.utils.Security;
 
 import java.util.regex.Matcher;
@@ -66,7 +65,6 @@ public class LoginController implements Controller {
         userService =(UserService) ServiceRegistry.getInstance().getService("USERSERVICE");
 
 
-        userService.addUser(new User("a",  Security.getHash("a"), "a@a.oma"));
     }
 
     @FXML

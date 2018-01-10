@@ -62,13 +62,12 @@
             <Font size="18.0" />
           </font>
         </Label>
-            <Button fx:id="back" layoutX="14.0" layoutY="322.0" mnemonicParsing="false" onAction="#goBack" text="Back" />
             <ImageView fitHeight="45.0" fitWidth="101.0" layoutX="302.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@academia_codigo_large.png" />
                </image>
             </ImageView>
-            <TableView fx:id="tableview" layoutX="17.0" layoutY="77.0" onMouseClicked="#onClick" prefHeight="200.0" prefWidth="604.0">
+            <TableView fx:id="tableview" layoutX="79.0" layoutY="77.0" onMouseClicked="#onClick" prefHeight="200.0" prefWidth="542.0">
                <columns>
                   <TableColumn fx:id="idCol" prefWidth="75.0" text="ID" />
                   <TableColumn fx:id="locationCol" prefWidth="75.0" text="Location" />
@@ -76,6 +75,7 @@
                   <TableColumn fx:id="endCol" prefWidth="75.0" text="End" />
                </columns>
             </TableView>
+            <Button fx:id="back" layoutX="2.0" layoutY="299.0" mnemonicParsing="false" onAction="#goBack" text="Back" />
       </children>
     </AnchorPane>
   </children>

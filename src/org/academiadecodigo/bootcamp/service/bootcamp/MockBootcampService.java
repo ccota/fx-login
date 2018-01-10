@@ -1,4 +1,4 @@
-package org.academiadecodigo.bootcamp.service;
+package org.academiadecodigo.bootcamp.service.bootcamp;
 
 import org.academiadecodigo.bootcamp.model.BootCamp;
 import org.academiadecodigo.bootcamp.model.CodeCadet;
@@ -32,7 +32,7 @@ public class MockBootcampService implements BootcampService {
         }
         // a code cadet can not be in more than one bootcamp
         if (codeCadet.getBootCamp() != null){
-            codeCadet.getBootCamp().removeCadet(codeCadet);
+            return;
         }
 
         codeCadet.setBootCamp(bootCamp);

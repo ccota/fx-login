@@ -1,4 +1,4 @@
-package org.academiadecodigo.bootcamp.service;
+package org.academiadecodigo.bootcamp.service.user;
 
 import org.academiadecodigo.bootcamp.model.User;
 
